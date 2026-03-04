@@ -1,0 +1,29 @@
+name: Daily Commit
+
+on:
+  schedule:
+    - cron: "0 18 * * *"   # runs daily
+  workflow_dispatch:
+
+jobs:
+  commit:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      - name: Update log
+        run: |
+          echo "Learning update $(date)" >> log.md
+
+      - name: Commit changes
+        run: |
+          git config --global user.name "pratham-dev3107"
+          git config --global user.email "action@github.com"
+          git add .
+          git commit -m "daily learning update" || echo "No changes to commit"
+
+      - name: Push changes
+        run: |
+          git push
