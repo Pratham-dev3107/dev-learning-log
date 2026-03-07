@@ -19,7 +19,7 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Update log
-        run: |EDD
+        run: |
           echo "Learning update $(date)" >> log.md
 
       - name: Commit and Push
